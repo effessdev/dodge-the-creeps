@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://10kf0cwp7dqc"]
+[gd_scene load_steps=8 format=3 uid="uid://10kf0cwp7dqc"]
 
 [ext_resource type="Texture2D" uid="uid://6fskqc62ee0a" path="res://art/playerGrey_up1.png" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://bqmpmv4mhrn0b" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://djmsr816nr0th" path="res://art/playerGrey_up2.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c4ga725pag4fs" path="res://art/playerGrey_walk1.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://vxtccoj2sp2y" path="res://art/playerGrey_walk2.png" id="4_1jxqw"]
@@ -16,7 +17,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -27,22 +28,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b26j0"]
 radius = 25.02
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"up"
-frame = 1
-frame_progress = 0.710694
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.46, -0.88)
 shape = SubResource("CircleShape2D_b26j0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

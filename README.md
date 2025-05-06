@@ -17,3 +17,9 @@ Obtained from [GDScript style guide](https://docs.godotengine.org/en/stable/tuto
 | Constants    | CONSTANT_CASE | `const MAX_SPEED = 200`     |
 | Enum names   | PascalCase    | `enum Element`              |
 | Enum members | CONSTANT_CASE | `{EARTH, WATER, AIR, FIRE}` |
+
+## Notes
+
+- You can detect whether a key is pressed using Input.is_action_pressed(), which returns true if it's pressed or false if it isn't.
+- $ is shorthand for get_node(). So in the code above, $AnimatedSprite2D.play() is the same as get_node("AnimatedSprite2D").play(). In GDScript, $ returns the node at the relative path from the current node, or returns null if the node is not found. Since AnimatedSprite2D is a child of the current node, we can use $AnimatedSprite2D.
+- Disabling the area's collision shape can cause an error if it happens in the middle of the engine's collision processing. Using set_deferred() tells Godot to wait to disable the shape until it's safe to do so.
