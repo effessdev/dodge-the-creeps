@@ -35,6 +35,11 @@ Using `set_deferred()` tells Godot to wait to disable the shape until it's safe 
 container for handling game logic. It does not require 2D functionality itself.)
 - Draw the path in clockwise order, or your mobs will spawn pointing outwards instead of inwards!
 
+## UI with Control Nodes
+
+The basic node for UI elements is Control.
+To create our UI, we'll use two types of Control nodes: `Label` and `Button`.
+
 ## Why `PI`
 
 In functions requiring angles, Godot uses radians, not degrees.
