@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://jg6d7l2bdl2i"]
+
+[ext_resource type="Script" uid="uid://b6uji5gxnn5m0" path="res://touch_d_pad.gd" id="1_wc5ie"]
+[ext_resource type="Texture2D" uid="uid://2jcbpic1rdqh" path="res://ui/d_pad_button.png" id="2_jegh5"]
+
+[node name="TouchDPad" type="CanvasLayer"]
+script = ExtResource("1_wc5ie")
+
+[node name="up" type="TouchScreenButton" parent="."]
+position = Vector2(25, 480)
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("2_jegh5")
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2(473, 522)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("2_jegh5")
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="."]
+position = Vector2(260, 642)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("2_jegh5")
+visibility_mode = 1
+
+[node name="down" type="TouchScreenButton" parent="."]
+position = Vector2(144, 696)
+rotation = 3.14159
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("2_jegh5")
+visibility_mode = 1
+
+[connection signal="pressed" from="up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="right" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="down" to="." method="_on_right_pressed"]
