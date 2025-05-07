@@ -14,7 +14,7 @@ func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
-	
+	$TouchDPad.hide()
 	$DeathSound.play()
 
 func new_game():
@@ -25,6 +25,8 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free") # Tell every mob to delete itself.
+	
+	$TouchDPad.show()
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.wait_time = initial_mob_timer_wait_time

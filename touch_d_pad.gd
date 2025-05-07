@@ -2,6 +2,10 @@ extends CanvasLayer
 
 var direction = Vector2.ZERO
 
+
+func _ready() -> void:
+	hide()
+
 func _process(delta: float) -> void:
 	var new_direction = Vector2.ZERO
 	
