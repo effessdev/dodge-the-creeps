@@ -10,7 +10,7 @@ func _ready():
 	hide()
 
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -32,7 +32,6 @@ func _process(delta):
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
-		# See the note below about the following boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
@@ -40,7 +39,7 @@ func _process(delta):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	hide() # Player disappears after being hit.
+	hide()
 	hit.emit()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
