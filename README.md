@@ -66,3 +66,8 @@ it will only collide with objects that are on Layer 1.
 
 By unchecking Mask 1, you're telling the mob (likely on Layer 1) not to detect other Layer 1 objects,
 which includes other mobs—thus, they won't collide with each other.
+
+# My Features
+
+- Changes to audio
+- Progressive difficulty

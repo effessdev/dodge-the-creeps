@@ -2,10 +2,13 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+var initial_mob_timer_wait_time
+@export var mob_wait_time_decay_rate = 0.02
 
 
 func _ready():
 	$Music.play()
+	initial_mob_timer_wait_time = $MobTimer.wait_time
 
 func game_over() -> void:
 	$ScoreTimer.stop()
@@ -17,6 +20,7 @@ func game_over() -> void:
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
+	$Player.queue_free()
 	$StartTimer.start()
 	
 	$HUD.update_score(score)
@@ -24,12 +28,15 @@ func new_game():
 	get_tree().call_group("mobs", "queue_free") # Tell every mob to delete itself.
 
 func _on_start_timer_timeout() -> void:
+	$MobTimer.wait_time = initial_mob_timer_wait_time
 	$MobTimer.start()
 	$ScoreTimer.start()
 	
 func _on_score_timer_timeout() -> void:
 	score += 1
 	$HUD.update_score(score)
+	# Increase difficulty by reducing spawn time
+	$MobTimer.wait_time = max(0.2, $MobTimer.wait_time - mob_wait_time_decay_rate)
 
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()

@@ -28,7 +28,7 @@ color = Color(0.102556, 0.287309, 0.554946, 1)
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.2
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
