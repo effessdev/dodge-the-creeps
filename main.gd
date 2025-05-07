@@ -5,12 +5,14 @@ var score
 
 
 func _ready():
-	pass
+	$Music.play()
 
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
+	
+	#$DeathSound.play()
 
 func new_game():
 	score = 0
