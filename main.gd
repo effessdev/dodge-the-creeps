@@ -11,7 +11,7 @@ func _ready():
 	initial_mob_timer_wait_time = $MobTimer.wait_time
 
 func _process(delta: float) -> void:
-	$Player.move($TouchDPad.direction, delta)
+	$Player.add_velocity($TouchDPad.direction)
 
 func game_over() -> void:
 	$ScoreTimer.stop()

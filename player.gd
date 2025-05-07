@@ -4,13 +4,13 @@ signal hit
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
+var velocity = Vector2.ZERO
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
 
 func _process(delta):
-	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -19,23 +19,7 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
-		
-	move(velocity, delta)
-
-
-func _on_body_entered(_body: Node2D) -> void:
-	# Note: _ before the body parameter indicates it's unused (convension).
-	hide()
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred("disabled", true)
-
-func start(pos):
-	position = pos
-	show()
-	$CollisionShape2D.disabled = false
-
-func move(velocity: Vector2, delta: float):
+	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
@@ -52,3 +36,21 @@ func move(velocity: Vector2, delta: float):
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
+	
+	velocity = Vector2.ZERO
+
+
+func _on_body_entered(_body: Node2D) -> void:
+	# Note: _ before the body parameter indicates it's unused (convension).
+	hide()
+	hit.emit()
+	# Must be deferred as we can't change physics properties on a physics callback.
+	$CollisionShape2D.set_deferred("disabled", true)
+
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+
+func add_velocity(given_velocity: Vector2):
+	velocity += given_velocity
