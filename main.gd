@@ -10,6 +10,9 @@ func _ready():
 	$Music.play()
 	initial_mob_timer_wait_time = $MobTimer.wait_time
 
+func _process(delta: float) -> void:
+	$Player.move($TouchDPad.direction, delta)
+
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()

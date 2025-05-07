@@ -10,9 +10,9 @@ func _process(delta: float) -> void:
 	var new_direction = Vector2.ZERO
 	
 	if $up.is_pressed():
-		new_direction.y += 1
-	if $down.is_pressed():
 		new_direction.y -= 1
+	if $down.is_pressed():
+		new_direction.y += 1
 	if $right.is_pressed():
 		new_direction.x += 1
 	if $left.is_pressed():
