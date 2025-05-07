@@ -7,12 +7,14 @@
 script = ExtResource("1_wc5ie")
 
 [node name="up" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
 position = Vector2(25, 480)
 scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("2_jegh5")
 visibility_mode = 1
 
 [node name="right" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
 position = Vector2(473, 522)
 rotation = 1.5708
 scale = Vector2(0.25, 0.25)
@@ -20,6 +22,7 @@ texture_normal = ExtResource("2_jegh5")
 visibility_mode = 1
 
 [node name="left" type="TouchScreenButton" parent="."]
+self_modulate = Color(1, 1, 1, 0.196078)
 position = Vector2(260, 642)
 rotation = -1.5708
 scale = Vector2(0.25, 0.25)
@@ -27,6 +30,7 @@ texture_normal = ExtResource("2_jegh5")
 visibility_mode = 1
 
 [node name="down" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
 position = Vector2(144, 696)
 rotation = 3.14159
 scale = Vector2(0.25, 0.25)
