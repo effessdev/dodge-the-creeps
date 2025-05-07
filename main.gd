@@ -19,6 +19,7 @@ func new_game():
 	
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	get_tree().call_group("mobs", "queue_free") # Tell every mob to delete itself.
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
