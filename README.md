@@ -27,7 +27,21 @@ which returns true if it's pressed or false if it isn't.
 In GDScript, `$` returns the node at the relative path from the current node,
 or returns null if the node is not found.
 Since `AnimatedSprite2D` is a child of the current node, we can use `$AnimatedSprite2D`.
-- Disabling the area's collision shape can cause an error if it happens in the middle of the engine's collision processing. Using set_deferred() tells Godot to wait to disable the shape until it's safe to do so.
+- Disabling the area's collision shape can cause an error if it happens in the
+middle of the engine's collision processing.
+Using `set_deferred()` tells Godot to wait to disable the shape until it's safe to do so.
+- Create a new scene and add a Node named Main.
+(The reason we are using Node instead of Node2D is because this node will be a
+container for handling game logic. It does not require 2D functionality itself.)
+- Draw the path in clockwise order, or your mobs will spawn pointing outwards instead of inwards!
+
+## Why `PI`
+
+In functions requiring angles, Godot uses radians, not degrees.
+Pi represents a half turn in radians, about 3.1415
+(there is also `TAU` which is equal to `2 * PI`).
+If you're more comfortable working with degrees, you'll need to use the
+`deg_to_rad()` and `rad_to_deg()` functions to convert between the two.
 
 ## How Collision Masks Work in Godot
 
