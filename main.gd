@@ -9,15 +9,13 @@ var initial_mob_timer_wait_time
 func _ready():
 	$Music.play()
 	initial_mob_timer_wait_time = $MobTimer.wait_time
-
-func _process(delta: float) -> void:
-	$Player.add_velocity($TouchDPad.direction)
+	$Control/TouchControls.hide()
 
 func game_over() -> void:
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$Control/TouchControls.hide()
 	$HUD.show_game_over()
-	$TouchDPad.hide()
 	$DeathSound.play()
 
 func new_game():
@@ -27,9 +25,8 @@ func new_game():
 	
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	$Control/TouchControls.show()
 	get_tree().call_group("mobs", "queue_free") # Tell every mob to delete itself.
-	
-	$TouchDPad.show()
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.wait_time = initial_mob_timer_wait_time

@@ -11,14 +11,10 @@ func _ready():
 	hide()
 
 func _process(delta):
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+	velocity.x -= Input.get_action_strength("move_left")
+	velocity.x += Input.get_action_strength("move_right")
+	velocity.y -= Input.get_action_strength("move_up")
+	velocity.y += Input.get_action_strength("move_down")
 	
 	var norm_velocity = velocity.normalized()
 	if velocity.length() > 0:
@@ -46,9 +42,6 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-
-func add_velocity(given_velocity: Vector2):
-	velocity += given_velocity
 
 func select_animation(norm_velocity: Vector2):
 	if abs(norm_velocity.x) >= 0.5:
