@@ -20,8 +20,9 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 	
+	var norm_velocity = velocity.normalized()
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = norm_velocity * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
@@ -29,13 +30,7 @@ func _process(delta):
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
-	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+	select_animation(norm_velocity)
 	
 	velocity = Vector2.ZERO
 
@@ -54,3 +49,17 @@ func start(pos):
 
 func add_velocity(given_velocity: Vector2):
 	velocity += given_velocity
+
+func select_animation(norm_velocity: Vector2):
+	if abs(norm_velocity.x) >= 0.5:
+		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.flip_h = norm_velocity.x < 0
+	elif norm_velocity.y >= 0.5:
+		$AnimatedSprite2D.animation = "up"
+		$AnimatedSprite2D.flip_v = true
+		$AnimatedSprite2D.flip_h = false
+	elif norm_velocity.y < -0.5:
+		$AnimatedSprite2D.animation = "up"
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.flip_h = false
