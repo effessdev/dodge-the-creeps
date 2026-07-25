@@ -1,6 +1,6 @@
 # Dodge the Creeps
 
-Godot version: 4.4.1
+An enhanced version of the official Godot tutorial game with touch controls, progressive difficulty, and upgraded audio.
 
 ## Naming Convensions
 
